@@ -231,84 +231,17 @@ function rx_order_submit(){
 			$subject = 'Order ID - "'.$orderID.'" From Test';
 			
 			$headers = "";
-			//$headers .= "Reply-To: ". strip_tags($admin_email) . "\r\n";
-			//$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 			
 			$message = "";
-			$message .= "<html>";
-			$message .= "<head>";
-			$message .= "<style>
-    			body { margin:0px; padding: 0px; background: #ccc; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px; color: #000000; }
-    			p, h1, h2, h3, h4, h5, h6, ul , li { margin: 0px; padding: 0px;}
-			    img { border: 0px; max-width:100%;height:auto;}
-			    tr{border: 0; border-collapse: collapse; border-spacing: 0;margin:0px auto;}
-			    table {margin-top: 0; margin-bottom:0; padding: 0px; font-family: Arial, Helvetica, sans-serif;}td{font-size:16px; font-family:arial;color: #000000;}
-			</style>";
-			$message .= "</head>";
-			$message .= "<body>";	
-
-    		$message .= "<table width='600' border='0' align='center' cellpadding='0' cellspacing='0' bgcolor='#ffffff'>";
-		    $message .= "<tr>
-		            		<td height='30'></td>
-		            		<td align='center'></td>
-		            		<td></td>
-		        		</tr>
-        				<tr>
-            				<td width='30'></td>
-            				<td align='center'>";
-            				
-            $message .= "<table width='100%'>
-                		<tr>
-	                    	<td align='left' valign='middle'><img src='". get_template_directory_uri() ."/assets/images/logo.png' alt='logo'
-	                        width='160' height='108' /></td>
-	                    	<td></td>
-	                    	<td></td>
-	                    	<td align='right' valign='top' height='30'><p style='font-size: 20px;line-height:20px;color:#ffffff;background-color: #eb1923; padding: 10px; text-align: center; font-weight: bold; text-transform: uppercase;'>Order Id : ".$orderID."</p></td>
-                		</tr>
-            			</table>";
-            $message .= "</td>";
-            $message .= "<td width='30'></td>
-				        </tr>
-				        <tr>
-				            <td height='30'></td>
-				            <td align='center'></td>
-				            <td></td>
-				        </tr>
-				        <tr>
-				            <td></td>
-				            <td><p style='font-family: Arial, Helvetica, sans-serif; font-size:18px;line-height:24px;color:#000;'><strong>Customer Name: </strong>".$customer_name. "</p></td>
-				            <td></td>
-				        </tr>
-				        <tr>
-				            <td height='10'></td>
-				            <td align='center'></td>
-				            <td></td>
-				        </tr>
-				        <tr>
-				            <td></td>
-				            <td><p style='font-size:18px;line-height:26px;color:#000;'><strong>Customer Email: </strong>".$customer_email."</p></td>
-				            <td></td>
-				        </tr>
-				        <tr>
-				            <td height='10'></td>
-				            <td align='center'></td>
-				            <td></td>
-				        </tr>        
-				        <tr>
-				            <td></td>
-				            <td><p style='font-size:18px;line-height:24px;color:#000;'><strong>Customer Mobile: </strong>".$mobile_number."</p></td>
-				            <td></td>
-				        </tr>
-				        <tr>
-				            <td height='20'></td>
-				            <td align='center'></td>
-				            <td></td>
-				        </tr>  
-				        <tr>
-				            <td></td>
-				            <td>";
-
+			$message = '<html><body>';
+			$message .= "<strong>Name: </strong>".$customer_name;
+			$message .= "<br>";
+			$message .= "<strong>Email : </strong>".$customer_email;
+			$message .= "<br>";
+			$message .= "<strong>Mobile : </strong>".$mobile_number;
+			$message .= "<br>";
+				         
                 $message .= "<table width='100%' border='1' cellspacing='1' cellpadding='1'>
                     <tr>
                         <th colspan='5' align='center' height='40'>Product Details</th>
@@ -347,17 +280,8 @@ function rx_order_submit(){
                 
                 
                 $message .= "</table>";
-            $message .= "</td>
-            				<td></td>            
-        				</tr>
-        				<tr>
-            				<td height='30'></td>
-            				<td align='center'></td>
-            				<td></td>
-        				</tr>
-    				</table>";
- 			$message .= "</body>";
-			$message .= "</html>";
+           	$message .= "</body></html>";	
+
 			
 			$mailsent = wp_mail($multiple_recipients,$subject,$message,$headers);
 			
@@ -455,7 +379,5 @@ add_shortcode( 'order_frm', 'up_custom_shortcode' );
 
 add_filter( 'wp_mail_from', 'custom_wp_mail_from' );
 function custom_wp_mail_from( $original_email_address ) {
-	//Make sure the email is from the same domain 
-	//as your website to avoid being marked as spam.
 	return 'wordpress@domain.com';
 }
