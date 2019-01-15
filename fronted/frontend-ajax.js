@@ -150,18 +150,6 @@ jQuery(document).ready(function($) {
 							jQuery("#notic_book_order.alert").html("Your Order added successfully");
 							jQuery("#book_order_form")[0].reset();
 							
-							/*if(data.status){
-
-				        			jQuery("#notic_book_order.alert").show();
-				        			jQuery("#notic_book_order.alert").addClass("alert-success");
-				        			jQuery("#notic_book_order.alert").html(data.message);
-				        			jQuery("#book_order_form")[0].reset();
-				            	
-				            } else {
-								   jQuery("#notic_book_order.alert").show();
-				        			jQuery("#notic_book_order.alert").addClass("alert-danger");
-				        			jQuery("#notic_book_order.alert").html(data.message);        
-				            }*/
 
 					},
 					error: function(errorThrown){
